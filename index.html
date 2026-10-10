@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InvoiceSnap – Free Invoice Generator</title>
+  <meta name="description" content="Create professional invoices in seconds. Free, private, no sign-up.">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="brand">⚡ <span id="appName">InvoiceSnap</span></div>
+    <nav>
+      <a id="tipBtn" class="btn ghost" target="_blank" rel="noopener" hidden>☕ Tip</a>
+      <button id="proBtn" class="btn accent">Go Pro</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="editor no-print">
+      <h2>Your details</h2>
+      <label>Logo <span class="pro-tag">PRO</span><input type="file" id="logoInput" accept="image/*"></label>
+      <label>Your name / business<input data-f="fromName" placeholder="Jane Doe Design"></label>
+      <label>Your address / email<textarea data-f="fromInfo" rows="2" placeholder="jane@example.com"></textarea></label>
+
+      <h2>Client</h2>
+      <label>Client name<input data-f="toName" placeholder="Acme Inc."></label>
+      <label>Client address<textarea data-f="toInfo" rows="2"></textarea></label>
+
+      <h2>Invoice</h2>
+      <div class="row">
+        <label>Number<input data-f="number"></label>
+        <label>Currency
+          <select data-f="currency">
+            <option>USD</option><option>EUR</option><option>GBP</option><option>INR</option>
+            <option>CAD</option><option>AUD</option><option>JPY</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <label>Date<input type="date" data-f="date"></label>
+        <label>Due<input type="date" data-f="due"></label>
+      </div>
+      <div class="row">
+        <label>Tax %<input type="number" min="0" step="0.01" data-f="tax"></label>
+        <label>Discount<input type="number" min="0" step="0.01" data-f="discount"></label>
+      </div>
+
+      <h2>Items</h2>
+      <div id="items"></div>
+      <button id="addItem" class="btn ghost">+ Add item</button>
+
+      <label>Notes / payment details<textarea data-f="notes" rows="3" placeholder="Bank / UPI / PayPal details"></textarea></label>
+
+      <div class="actions">
+        <button id="printBtn" class="btn accent">Download PDF</button>
+        <button id="newBtn" class="btn ghost">New invoice</button>
+      </div>
+
+      <div id="adSlot" class="ad no-print" hidden></div>
+    </section>
+
+    <section class="preview">
+      <article id="invoice" class="paper"></article>
+    </section>
+  </main>
+
+  <dialog id="proDialog">
+    <h2>InvoiceSnap Pro</h2>
+    <ul>
+      <li>✅ Add your own logo</li>
+      <li>✅ Remove "Made with InvoiceSnap" footer</li>
+      <li>✅ No ads</li>
+    </ul>
+    <p class="price" id="proPrice"></p>
+    <a id="buyBtn" class="btn accent" target="_blank" rel="noopener">Buy Pro</a>
+    <p class="small">Already paid? Enter your unlock code:</p>
+    <div class="row"><input id="codeInput" placeholder="Unlock code"><button id="codeBtn" class="btn ghost">Unlock</button></div>
+    <p id="codeMsg" class="small"></p>
+    <form method="dialog"><button class="btn ghost">Close</button></form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
